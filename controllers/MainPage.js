@@ -1,8 +1,16 @@
 const MainPage=require('../models/MainPage');
 const {StatusCodes}=require('http-status-codes')
 const {BadRequestError}=require('../errors/index')
+const crosauth=(res)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+}
 
 const CreateMainPage=async (req,res)=>{
+    crosauth(res);
     const newMainPage=await MainPage.create({...req.body});
     if(!newMainPage){
         throw new BadRequestError('please do it correctly');
@@ -11,6 +19,8 @@ const CreateMainPage=async (req,res)=>{
 }
 
 const showAllMainPage= async (req,res)=>{
+    crosauth(res);
+
     const allMainPage=await MainPage.find({});
     if(!allMainPage){
         throw new BadRequestError('no servicees yet')
@@ -20,6 +30,8 @@ const showAllMainPage= async (req,res)=>{
 
 
 const updateMainPage= async (req,res)=>{
+    crosauth(res);
+
     let banner=req.query.banner;
     let video=req.query.video;
     let newMainPage;
@@ -41,6 +53,8 @@ const updateMainPage= async (req,res)=>{
 }
 
 const DeleteMainPage= async (req,res)=>{
+    crosauth(res);
+
     let MainPageName=req.query.name;
    
 

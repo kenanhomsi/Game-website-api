@@ -2,10 +2,17 @@ const CustomerRequests=require('../models/CustomerRequests');
 const {StatusCodes}=require('http-status-codes')
 const {BadRequestError}=require('../errors/index')
 const nodemailer=require('nodemailer');
-
+const crosauth=(res)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+}
 
 
 const CreateCustomerRequests=async (req,res)=>{
+    crosauth(res);
     const newCustomerRequests=await CustomerRequests.create({...req.body});
     const transporter=nodemailer.createTransport({
         service:'Gmail',
@@ -39,6 +46,8 @@ const CreateCustomerRequests=async (req,res)=>{
 }
 
 const showAllCustomerRequests= async (req,res)=>{
+    crosauth(res);
+
     const allCustomerRequests=await CustomerRequests.find({});
     if(!allCustomerRequests){
         throw new BadRequestError('no servicees yet')
@@ -48,6 +57,8 @@ const showAllCustomerRequests= async (req,res)=>{
 
 
 const updateCustomerRequests= async (req,res)=>{
+    crosauth(res);
+
     let CustomerName=req.query.name;
     CustomerName=CustomerName.substring(1,CustomerName.length -1);
     const newCustomerRequests=await CustomerRequests.findOneAndUpdate({FullName:CustomerName},{...req.body})
@@ -58,6 +69,8 @@ const updateCustomerRequests= async (req,res)=>{
 }
 
 const DeleteCustomerRequests= async (req,res)=>{
+    crosauth(res);
+
     let CustomerRequestsName=req.query.name;
     CustomerRequestsName=CustomerRequestsName.substring(1,CustomerRequestsName.length -1);
     const deleteCustomerRequests=await CustomerRequests.findOneAndDelete({FullName:CustomerRequestsName})
@@ -68,6 +81,8 @@ const DeleteCustomerRequests= async (req,res)=>{
 }
 
 const filteringCustomerRequests= async (req,res)=>{
+    crosauth(res);
+
     let OrderStatus=req.query.status;
     OrderStatus=OrderStatus.substring(1,OrderStatus.length -1);
     const filteredCustomerRequests=await CustomerRequests.find({OrderStatus:OrderStatus})
