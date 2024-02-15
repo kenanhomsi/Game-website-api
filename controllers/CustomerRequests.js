@@ -3,17 +3,19 @@ const {StatusCodes}=require('http-status-codes')
 const {BadRequestError}=require('../errors/index')
 const nodemailer=require('nodemailer');
 const crosauth=(res)=>{
-    res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Max-Age", "1800");
   res.setHeader("Access-Control-Allow-Headers", "content-type");
-  res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
+  res.setHeader( "Access-Control-Allow-Methods", "PUT , POST , GET, DELETE , PATCH , OPTIONS" );
 }
 
 
 const CreateCustomerRequests=async (req,res)=>{
     crosauth(res);
+
     const newCustomerRequests=await CustomerRequests.create({...req.body});
+    console.log(newCustomerRequests);
     const transporter=nodemailer.createTransport({
         service:'Gmail',
         auth:{
