@@ -41,9 +41,9 @@ const updateGame= async (req,res)=>{
 const DeleteGame= async (req,res)=>{
     crosauth(res);
 
-    let gameName=req.query.name;
-    gameName=gameName.substring(1,gameName.length -1);
-    const deletegame=await Games.findOneAndDelete({gameName:gameName})
+    let id=req.query.name;
+    id=id.substring(1,id.length -1);
+    const deletegame=await Games.findOneAndDelete({_id:id})
     if(!deletegame){
         throw new BadRequestError('wrong userName');
     }

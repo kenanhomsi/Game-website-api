@@ -73,9 +73,9 @@ const updateCustomerRequests= async (req,res)=>{
 const DeleteCustomerRequests= async (req,res)=>{
     crosauth(res);
 
-    let CustomerRequestsName=req.query.name;
-    CustomerRequestsName=CustomerRequestsName.substring(1,CustomerRequestsName.length -1);
-    const deleteCustomerRequests=await CustomerRequests.findOneAndDelete({FullName:CustomerRequestsName})
+    let id=req.query.name;
+    id=id.substring(1,id.length -1);
+    const deleteCustomerRequests=await CustomerRequests.findOneAndDelete({_id:id})
     if(!deleteCustomerRequests){
         throw new BadRequestError('wrong userName');
     }
