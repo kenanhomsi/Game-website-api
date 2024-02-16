@@ -61,9 +61,9 @@ const showAllCustomerRequests= async (req,res)=>{
 const updateCustomerRequests= async (req,res)=>{
     crosauth(res);
 
-    let CustomerName=req.query.name;
-    CustomerName=CustomerName.substring(1,CustomerName.length -1);
-    const newCustomerRequests=await CustomerRequests.findOneAndUpdate({FullName:CustomerName},{...req.body})
+    let id=req.query.name;
+    id=id.substring(1,id.length -1);
+    const newCustomerRequests=await CustomerRequests.findOneAndUpdate({_id:id},{...req.body})
     if(!newCustomerRequests){
         throw new BadRequestError('wrong userName');
     }
