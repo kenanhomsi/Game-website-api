@@ -20,8 +20,10 @@ const CreateMainPage=async (req,res)=>{
 
 const showAllMainPage= async (req,res)=>{
     crosauth(res);
+    let banner=req.query.banner;
+    banner=banner.substring(1,banner.length -1);
 
-    const allMainPage=await MainPage.find({});
+    const allMainPage=await MainPage.find({banner:banner});
     if(!allMainPage){
         throw new BadRequestError('no servicees yet')
     } 
@@ -32,20 +34,9 @@ const showAllMainPage= async (req,res)=>{
 const updateMainPage= async (req,res)=>{
     crosauth(res);
 
-    let banner=req.query.banner;
-    let video=req.query.video;
-    let newMainPage;
-    if(banner !=""){
-        
-        banner=banner.substring(1,banner.length -1);
-         newMainPage=await MainPage.findOneAndUpdate({banner:banner},{...req.body})
-        
-        }
-    if(video){
-        video=video.substring(1,video.length -1);
-         newMainPage=await MainPage.findOneAndUpdate({Video:video},{...req.body})
-    }
-   
+    let banner=req.query.banner;    
+    banner=banner.substring(1,banner.length -1);
+     let newMainPage=await MainPage.findOneAndUpdate({banner:banner},{...req.body})
     if(!newMainPage){
         throw new BadRequestError('wrong userName');
     }

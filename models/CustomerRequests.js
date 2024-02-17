@@ -12,18 +12,10 @@ const Customer=mongoose.Schema({
         type:Number,
         required:[true,'please provide the phoneNumebr'],
     },
-    zipCode:{
-        type:Number,
-        required:[true,'please provide the zipCode'],
-    },
-    items:{
-        type:[String],
-        required:[true,'please provide the items'],
-    },
     OrderStatus:{
         type:String,
         enum:{
-            values:['قيد الانتظار','تم بنجاح'],
+            values:['جديد','ملغي','تم الاعتماد'],
             message:'{VALUE} is not supported'
         }
     }
