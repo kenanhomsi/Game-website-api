@@ -30,9 +30,9 @@ const showAllGames= async (req,res)=>{
 const updateGame= async (req,res)=>{
     crosauth(res);
 
-    let gameName=req.query.name;
-    gameName=gameName.substring(1,gameName.length -1);
-    const newgame=await Games.findOneAndUpdate({gameName:gameName},{...req.body})
+    let id=req.query.name;
+    id=id.substring(1,id.length -1);
+    const newgame=await Games.findOneAndUpdate({_id:id},{...req.body})
     if(!newgame){
         throw new BadRequestError('wrong userName');
     }
