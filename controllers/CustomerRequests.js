@@ -19,20 +19,19 @@ const CreateCustomerRequests=async (req,res)=>{
     const transporter=nodemailer.createTransport({
         service:'Gmail',
         auth:{
-            user:"kinanhomsi0959@gmail.com",
-            pass:"bqzs rmkg bdhp qblw"
+            user:"t5earchat1@gmail.com",
+            pass:"jrgt jnsz prds alnl"
         }
     });
     
     const mail_option={
         from:req.body.FullName,
-        to:"kinan_52_@hotmail.com",
+        to:"t5earmail@gmail.com",
         subject:`new order `,
         text:`
         customer name:${req.body.FullName},
         zip code :${req.body.zipCode} ,
-        phone number : ${req.body.phoneNumebr},
-        orders :{${req.body.items}}`
+        phone number : ${req.body.phoneNumebr}`
     }
     transporter.sendMail(mail_option,(err,info)=>{
         if(err){
