@@ -6,7 +6,7 @@ const PlayerClassSchema=mongoose.Schema({
         type:String,
         required:[true,'please provide the player class'],
         unique:true,
-        minLength:5,
+        minLength:2,
         maxLength:50
     },
     briefExplian:{

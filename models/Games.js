@@ -5,7 +5,7 @@ const GamesSchema=mongoose.Schema({
     gameName:{
         type:String,
         required:[true,'please provide the game name'],
-        minLength:5,
+        minLength:2,
         maxLength:50
     },
     briefExplian:{
