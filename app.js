@@ -48,14 +48,15 @@ const cros=require('cors');
 const xss=require('xss-clean');
 
 // routes
-app.get('/', (req, res) => {
+app.get('/el3b-server/', (req, res) => {
 
   res.send('Hello World!')
 })
-app.use('/api/v1/playerclass',PlayerClassRouter);
-app.use('/api/v1/games',GamesRouter);
-app.use('/api/v1/Customer',CustomerRouter);
-app.use('/api/v1/MainPage',MainPageRouter);
+
+app.use('/el3b-server/api/v1/playerclass',PlayerClassRouter);
+app.use('/el3b-server/api/v1/games',GamesRouter);
+app.use('/el3b-server/api/v1/Customer',CustomerRouter);
+app.use('/el3b-server/api/v1/MainPage',MainPageRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

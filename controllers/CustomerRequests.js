@@ -30,7 +30,6 @@ const CreateCustomerRequests=async (req,res)=>{
         subject:`new order `,
         text:`
         customer name:${req.body.FullName},
-        zip code :${req.body.zipCode} ,
         phone number : ${req.body.phoneNumebr}`
     }
     transporter.sendMail(mail_option,(err,info)=>{

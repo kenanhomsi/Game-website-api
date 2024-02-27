@@ -5,8 +5,7 @@ const Customer=mongoose.Schema({
     FullName:{
         type:String,
         required:[true,'please provide the customer name'],
-        minLength:5,
-        maxLength:50
+      
     },
     phoneNumebr:{
         type:Number,
