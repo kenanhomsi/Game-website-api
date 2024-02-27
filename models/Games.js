@@ -5,8 +5,8 @@ const mongoose=require('mongoose');
 const GamesSchema=mongoose.Schema({
     gameName:{
         type:String,
+        unique: false,
         required:[true,'please provide the game name'],
-        unique:false
     },
     briefExplian:{
         type:String,
